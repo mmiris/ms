@@ -1,15 +1,16 @@
 <template>
   <div>
-    <router-link to="/login" class="router">login</router-link>
-    <router-link to="/main" class="router">main</router-link>
+    <router-link to="/login" custom #="{ navigate }">
+      <el-button type="primary" @click="navigate">login</el-button>
+    </router-link>
+    <router-link to="/main" custom #="{ navigate }">
+      <el-button type="primary" @click="navigate">main</el-button>
+    </router-link>
     <router-view></router-view>
   </div>
 </template>
 
-<script lang="ts" setup>
-// import LoginView from './views/login/LoginView.vue'
-// import MainView from './views/main/MainView.vue'
-</script>
+<script lang="ts" setup></script>
 
 <style scoped>
 .router {
