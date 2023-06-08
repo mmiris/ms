@@ -1,8 +1,4 @@
-import type {
-  InternalAxiosRequestConfig,
-  AxiosResponse,
-  AxiosRequestConfig
-} from 'axios'
+import type { InternalAxiosRequestConfig, AxiosResponse, AxiosRequestConfig } from 'axios'
 
 interface ICommInterceptors {
   requestInterceptorCatch?: (err: any) => any
@@ -11,9 +7,7 @@ interface ICommInterceptors {
 }
 
 interface IInstanceInterceptors extends ICommInterceptors {
-  requestInterceptor?: (
-    config: InternalAxiosRequestConfig
-  ) => InternalAxiosRequestConfig
+  requestInterceptor?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig
 }
 
 interface IRequestInterceptors extends ICommInterceptors {

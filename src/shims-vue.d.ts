@@ -1,8 +1,9 @@
 /* eslint-disable */
+
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
   export default component
 }
 
-declare let BASE_NAME: string
+declare const ElLoading: typeof import('element-plus')['ElLoading']
