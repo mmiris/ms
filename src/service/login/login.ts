@@ -2,11 +2,31 @@ import service from '..'
 import LoginAPI from './types'
 import { IAccount } from '@/store/login/type'
 
-const loginRequest = (account: IAccount) => {
+const requestLogin = (account: IAccount) => {
   return service.post({
-    url: LoginAPI.ACCOUNTLOGIN,
+    url: LoginAPI.login,
     data: account
   })
 }
 
-export { loginRequest }
+const requestUserInfo = (id: number) => {
+  return service.get(
+    {
+      url: LoginAPI.userInfo + id
+    },
+    undefined,
+    false
+  )
+}
+
+const requestUserMenus = (id: number) => {
+  return service.get(
+    {
+      url: LoginAPI.userMenus + id
+    },
+    undefined,
+    false
+  )
+}
+
+export { requestLogin, requestUserInfo, requestUserMenus }

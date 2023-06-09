@@ -1,11 +1,11 @@
 <template>
   <div class="login-form">
     <h2>登录</h2>
-    <el-form label-width="25%" :model="account" :rules="rules" ref="formRef" class="form">
-      <el-form-item label="用户名：" prop="name">
+    <el-form :model="account" :rules="rules" ref="formRef" class="form">
+      <el-form-item label="用户名:" prop="name">
         <el-input type="text" v-model="account.name" />
       </el-form-item>
-      <el-form-item label="密&nbsp;&nbsp;码：" prop="password">
+      <el-form-item label="密&nbsp;&nbsp;&nbsp;码:" prop="password">
         <el-input type="text" v-model="account.password" show-password />
       </el-form-item>
       <div class="retain">
@@ -21,16 +21,18 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
-import { Actions } from '@/store/login/type'
-
 import { FormInstance } from 'element-plus'
 import rules from '../config/account-rules'
+import { EModules } from '@/store/type'
+import { EActions } from '@/store/login/type'
+import localCache from '@/utils/localCache'
 
 const store = useStore()
 const formRef = ref<FormInstance>()
+
 const account = reactive({
-  name: '',
-  password: ''
+  name: localCache.getItem('name') ?? '',
+  password: localCache.getItem('password') ?? ''
 })
 const retain = ref(true)
 
@@ -40,7 +42,20 @@ const loginAction = (formRef: FormInstance | undefined) => {
   }
   formRef.validate((valid) => {
     if (valid) {
-      store.dispatch(`login/${Actions.LOGIN}`, { ...account })
+      store
+        .dispatch(EModules.login + '/' + EActions.actionLogin, { ...account })
+        .then((res) => {
+          if (res && retain.value) {
+            localCache.setItem('name', account.name)
+            localCache.setItem('password', account.password)
+          }
+        })
+        .catch((err) => {
+          localCache.removeItem('name')
+          localCache.removeItem('password')
+          console.log(err)
+        })
+
       return true
     }
     console.log('呜呜呜')
@@ -55,9 +70,8 @@ const loginAction = (formRef: FormInstance | undefined) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
-  padding: 2% 0;
-  margin-bottom: 10%;
+  padding: 3%;
+  margin-bottom: 5%;
   background-color: rgb(243, 246, 249);
   border-radius: 2%;
 }
@@ -66,9 +80,7 @@ h2 {
   margin-top: 0;
   color: rgb(189, 216, 241);
 }
-.form {
-  width: 80%;
-}
+
 .login-action {
   display: flex;
   justify-content: center;

@@ -9,7 +9,7 @@ const rules: FormRules = {
     },
     {
       pattern: /^[\w]{6,16}$/,
-      message: '用户由6~16个字母、数字或者下划线组成',
+      message: '由6~16位字母、数字或下划线组成',
       trigger: 'blur'
     }
   ],
@@ -21,7 +21,7 @@ const rules: FormRules = {
     },
     {
       pattern: /^[\w]{6,16}$/,
-      message: '密码由6~16个字母、数字或者下划线组成',
+      message: '由6~16个字母、数字或下划线组成',
       trigger: 'blur'
     }
   ]

@@ -2,4 +2,8 @@ interface IRootState {
   name: string
 }
 
-export default IRootState
+enum EModules {
+  login = 'login'
+}
+
+export { IRootState, EModules }

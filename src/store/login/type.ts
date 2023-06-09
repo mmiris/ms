@@ -7,10 +7,19 @@ interface ILoginState {
 interface IAccount {
   name: string
   password: string
+  retain: boolean
 }
 
-enum Actions {
-  LOGIN = 'LOGIN'
+enum EMutations {
+  mutateToken = 'mutateToken',
+  mutateUserInfo = 'mutateUserInfo',
+  mutateUserMenus = 'mutateUserMenus'
 }
 
-export { ILoginState, IAccount, Actions }
+enum EActions {
+  actionLogin = 'actionLogin',
+  actionUserInfo = 'actionUserInfo',
+  actionUserMenus = 'actionUserMenus'
+}
+
+export { ILoginState, IAccount, EMutations, EActions }

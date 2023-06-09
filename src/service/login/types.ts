@@ -1,7 +1,7 @@
 enum LoginAPI {
-  ACCOUNTLOGIN = '/login',
-  USERINFO = '/users/',
-  USERMENUS = '/menu/'
+  login = '/login',
+  userInfo = '/users/',
+  userMenus = '/menu/'
 }
 
 export default LoginAPI

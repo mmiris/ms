@@ -1,5 +1,6 @@
 import Service from './request/service'
 import { BASE_URL, TIMEOUT } from './request/config'
+import localCache from '@/utils/localCache'
 
 const service = new Service(
   {
@@ -8,7 +9,11 @@ const service = new Service(
   },
   {
     requestInterceptor: (config) => {
-      console.log('Current instance request successful.')
+      const token = localCache.getItem('token')
+      if (token) {
+        config.headers.Authorization = 'Bearer ' + token
+      }
+      // console.log('Current instance request successful.')
       return config
     },
     requestInterceptorCatch(err) {
@@ -16,7 +21,7 @@ const service = new Service(
       return err
     },
     responseInterceptor(res) {
-      console.log('Current instance response successful.')
+      // console.log('Current instance response successful.')
       return res
     },
     resonseInterceptorCatch(err) {

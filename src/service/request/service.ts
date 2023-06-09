@@ -26,7 +26,7 @@ export default class Service {
           })
         }
         this._loading = this._isLoading
-        console.log(`All instance requset successful.`)
+        // console.log(`All instance requset successful.`)
         return config
       },
       (err) => {
@@ -39,8 +39,8 @@ export default class Service {
       (res) => {
         // TODO
         this._loader && this._loader.close()
-        console.log('All instance response successful.')
-        return res.data
+        // console.log('All instance response successful.')
+        return res
       },
       (err) => {
         // TODO

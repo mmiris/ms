@@ -11,7 +11,8 @@ module.exports = defineConfig({
           changeOrigin: true,
           secure: false
         }
-      }
+      },
+      host: '0.0.0.0'
     },
     plugins: [
       require('unplugin-auto-import/webpack')({
