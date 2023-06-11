@@ -1,3 +1,4 @@
+import router from '@/router'
 import { Module } from 'vuex'
 import { IRootState } from '../type'
 import { ILoginState, EMutations, EActions, IAccount } from './type'
@@ -15,7 +16,6 @@ const login: Module<ILoginState, IRootState> = {
   mutations: {
     [EMutations.mutateToken](state, payload) {
       state.token = payload.token
-      console.log('login successful.')
     },
     [EMutations.mutateUserInfo](state, payload) {
       state.userInfo = payload.userInfo
@@ -39,6 +39,7 @@ const login: Module<ILoginState, IRootState> = {
       const userMenusData = { userMenus: userMenusRes.data.data }
       commit(EMutations.mutateUserMenus, userMenusData)
 
+      router.push('/main')
       return loginData.token
     }
   }

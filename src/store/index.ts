@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore, useStore, Store } from 'vuex'
 import login from './login/login'
+import { IStore } from './type'
 
 const store = createStore({
   state: {
@@ -12,5 +13,9 @@ const store = createStore({
     login
   }
 })
+
+export function useStoreWithinModules() {
+  return useStore<Store<IStore>>()
+}
 
 export default store

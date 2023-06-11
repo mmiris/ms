@@ -22,7 +22,7 @@ const requestUserInfo = (id: number) => {
 const requestUserMenus = (id: number) => {
   return service.get(
     {
-      url: LoginAPI.userMenus + id
+      url: LoginAPI.userMenus + id + '/menu'
     },
     undefined,
     false

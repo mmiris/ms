@@ -21,6 +21,7 @@ const setupStore = {
       const state = JSON.stringify(store.state)
       sessionStorage.setItem('state', state)
       e.returnValue = ''
+      return true
     })
   }
 }

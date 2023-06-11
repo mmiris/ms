@@ -1,5 +1,5 @@
 let BASE_URL = ''
-const TIMEOUT = 10000
+const TIMEOUT = 30000
 
 switch (process.env.NODE_ENV) {
   case 'development':

@@ -1,5 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+const IconsResolver = require('unplugin-icons/resolver')
+
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
@@ -16,10 +18,14 @@ module.exports = defineConfig({
     },
     plugins: [
       require('unplugin-auto-import/webpack')({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver(), IconsResolver({})],
+        vueTemplate: true
       }),
       require('unplugin-vue-components/webpack')({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver(), IconsResolver()]
+      }),
+      require('unplugin-icons/webpack')({
+        autoInstall: true
       })
     ]
   }

@@ -1,9 +1,13 @@
-interface IRootState {
+import { ILoginState } from './login/type'
+
+export interface IRootState {
   name: string
 }
 
-enum EModules {
+export enum EModules {
   login = 'login'
 }
 
-export { IRootState, EModules }
+export interface IStore<T = ILoginState> extends IRootState {
+  login: T
+}
