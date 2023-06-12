@@ -17,9 +17,7 @@ enum EMutations {
 }
 
 enum EActions {
-  actionLogin = 'actionLogin',
-  actionUserInfo = 'actionUserInfo',
-  actionUserMenus = 'actionUserMenus'
+  actionLogin = 'actionLogin'
 }
 
 export { ILoginState, IAccount, EMutations, EActions }

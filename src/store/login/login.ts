@@ -39,6 +39,7 @@ const login: Module<ILoginState, IRootState> = {
       const userMenusData = { userMenus: userMenusRes.data.data }
       commit(EMutations.mutateUserMenus, userMenusData)
 
+      // sessionStorage.setItem('state', JSON.stringify(store.state))
       router.push('/main')
       return loginData.token
     }

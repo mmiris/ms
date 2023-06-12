@@ -23,7 +23,9 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   if (to.path !== '/login') {
-    if (!localCache.getItem('token')) return '/login'
+    if (!localCache.getItem('token') || !sessionStorage.getItem('state')) {
+      return '/login'
+    }
   }
 })
 

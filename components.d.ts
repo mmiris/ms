@@ -22,8 +22,8 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    NavHeader: typeof import('./src/components/nav-header/NavHeader.vue')['default']
-    NavMenu: typeof import('./src/components/nav-menu/NavMenu.vue')['default']
+    NavHeader: typeof import('./src/components/nav-header/src/NavHeader.vue')['default']
+    NavMenu: typeof import('./src/components/nav-menu/src/NavMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

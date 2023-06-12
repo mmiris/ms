@@ -1,11 +1,13 @@
 <template>
   <div class="main-view">
-    <el-container class="main-container">
-      <el-aside width="200px" class="aside">
-        <nav-menu></nav-menu>
+    <el-container>
+      <el-aside width="auto">
+        <nav-menu :is-fold="isFold" />
       </el-aside>
       <el-container>
-        <el-header class="header">Header</el-header>
+        <el-header>
+          <nav-header @fold="fold" />
+        </el-header>
         <el-main class="main"> </el-main>
       </el-container>
     </el-container>
@@ -13,7 +15,14 @@
 </template>
 
 <script lang="ts" setup>
-import NavMenu from '@/components/nav-menu/NavMenu.vue'
+import { ref } from 'vue'
+import NavMenu from '@/components/nav-menu/src/NavMenu.vue'
+import NavHeader from '@/components/nav-header/src/NavHeader.vue'
+
+let isFold = ref(false)
+const fold = (isFoldParams: boolean) => {
+  isFold.value = isFoldParams
+}
 </script>
 
 <style lang="less" scoped>
@@ -22,16 +31,15 @@ import NavMenu from '@/components/nav-menu/NavMenu.vue'
   height: 100%;
 }
 
-.main-container {
+.el-container {
   height: 100%;
 }
-.aside {
-  background-color: #545c64;
-}
 
-.header {
-  background-color: aqua;
-  line-height: var(--el-header-height);
+.el-header {
+  display: flex;
+  align-items: center;
+  height: 48px !important;
+  font-size: 28px;
 }
 
 .main {
