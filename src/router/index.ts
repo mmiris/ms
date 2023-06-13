@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import localCache from '@/utils/localCache'
+import localCache from '@/utils/local-cache'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,8 +11,10 @@ const routes: RouteRecordRaw[] = [
     component: () => import(/* webpackChunkName: 'login' */ '../views/login/LoginView.vue')
   },
   {
+    name: 'main',
     path: '/main',
-    component: () => import(/* webpackChunkName: 'main' */ '../views/main/MainView.vue')
+    component: () => import(/* webpackChunkName: 'main' */ '../views/main/MainView.vue'),
+    children: []
   }
 ]
 

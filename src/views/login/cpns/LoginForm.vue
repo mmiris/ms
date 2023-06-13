@@ -25,7 +25,7 @@ import { FormInstance } from 'element-plus'
 import rules from '../config/account-rules'
 import { EModules } from '@/store/type'
 import { EActions } from '@/store/login/type'
-import localCache from '@/utils/localCache'
+import localCache from '@/utils/local-cache'
 
 const store = useStore()
 const formRef = ref<FormInstance>()

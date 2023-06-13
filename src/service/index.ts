@@ -1,6 +1,6 @@
 import Service from './request/service'
 import { BASE_URL, TIMEOUT } from './request/config'
-import localCache from '@/utils/localCache'
+import localCache from '@/utils/local-cache'
 
 const service = new Service(
   {

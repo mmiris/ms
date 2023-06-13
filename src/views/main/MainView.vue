@@ -8,7 +8,10 @@
         <el-header>
           <nav-header @fold="fold" />
         </el-header>
-        <el-main class="main"> </el-main>
+        <el-main>
+          <!-- <i-form /> -->
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -18,6 +21,7 @@
 import { ref } from 'vue'
 import NavMenu from '@/components/nav-menu/src/NavMenu.vue'
 import NavHeader from '@/components/nav-header/src/NavHeader.vue'
+import IForm from '@/common-ui/IForm.vue'
 
 let isFold = ref(false)
 const fold = (isFoldParams: boolean) => {
@@ -35,6 +39,10 @@ const fold = (isFoldParams: boolean) => {
   height: 100%;
 }
 
+.el-main {
+  background-color: #f8f8f8;
+}
+
 .el-header {
   display: flex;
   align-items: center;
@@ -42,7 +50,13 @@ const fold = (isFoldParams: boolean) => {
   font-size: 28px;
 }
 
-.main {
-  background-color: skyblue;
+.el-row {
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 12px -12px #000000;
+}
+
+.el-col {
+  margin: 12px 8px;
 }
 </style>

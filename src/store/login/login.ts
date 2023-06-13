@@ -3,7 +3,8 @@ import { Module } from 'vuex'
 import { IRootState } from '../type'
 import { ILoginState, EMutations, EActions, IAccount } from './type'
 import { requestLogin, requestUserInfo, requestUserMenus } from '@/service/login/login'
-import localCache from '@/utils/localCache'
+import localCache from '@/utils/local-cache'
+import mapMenus2Routes from '@/utils/map-menus-routes'
 
 const login: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -22,6 +23,12 @@ const login: Module<ILoginState, IRootState> = {
     },
     [EMutations.mutateUserMenus](state, payload) {
       state.userMenus = payload.userMenus
+      const routes = mapMenus2Routes(payload.userMenus)
+
+      routes.forEach((route) => {
+        router.addRoute(route)
+      })
+      console.log(router.getRoutes())
     }
   },
   actions: {
@@ -39,7 +46,6 @@ const login: Module<ILoginState, IRootState> = {
       const userMenusData = { userMenus: userMenusRes.data.data }
       commit(EMutations.mutateUserMenus, userMenusData)
 
-      // sessionStorage.setItem('state', JSON.stringify(store.state))
       router.push('/main')
       return loginData.token
     }

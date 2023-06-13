@@ -6,5 +6,5 @@ import setupStore from './hooks/use-vuex-persisted'
 
 const app = createApp(App)
 
-app.use(router).use(store).use(setupStore)
+app.use(store).use(setupStore).use(router)
 app.mount('#app')

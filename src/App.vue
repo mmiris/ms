@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watchEffect } from 'vue'
+import { onMounted, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 import { IStore } from './store/type'
 
@@ -11,9 +11,11 @@ const store = useStore<IStore>()
 
 watchEffect(
   () => {
-    sessionStorage.setItem('state', JSON.stringify(store.state))
+    store.state.login.token && sessionStorage.setItem('state', JSON.stringify(store.state))
   },
-  { flush: 'post' }
+  {
+    flush: 'post'
+  }
 )
 </script>
 

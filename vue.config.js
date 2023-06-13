@@ -18,8 +18,7 @@ module.exports = defineConfig({
     },
     plugins: [
       require('unplugin-auto-import/webpack')({
-        resolvers: [ElementPlusResolver(), IconsResolver({})],
-        vueTemplate: true
+        resolvers: [ElementPlusResolver(), IconsResolver({})]
       }),
       require('unplugin-vue-components/webpack')({
         resolvers: [ElementPlusResolver(), IconsResolver()]

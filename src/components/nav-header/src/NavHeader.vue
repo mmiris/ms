@@ -14,7 +14,7 @@ const fold = () => {
 
 <template>
   <div class="nav-header">
-    <el-icon @click="fold" style="color: #ffd04b">
+    <el-icon @click="fold">
       <component :is="isFold ? Fold : Expand"></component>
     </el-icon>
   </div>

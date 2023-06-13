@@ -6,15 +6,3 @@ export {}
 declare global {
   const ElLoading: typeof import('element-plus/es')['ElLoading']
 }
-// for vue template auto import
-import { UnwrapRef } from 'vue'
-declare module 'vue' {
-  interface ComponentCustomProperties {
-    readonly ElLoading: UnwrapRef<typeof import('element-plus/es')['ElLoading']>
-  }
-}
-declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    readonly ElLoading: UnwrapRef<typeof import('element-plus/es')['ElLoading']>
-  }
-}
