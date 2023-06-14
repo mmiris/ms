@@ -43,7 +43,7 @@ const fold = (isFoldParams: boolean) => {
     }
 
     .el-main {
-      background-color: #f8f8f8;
+      background-color: #f6f6f6;
     }
   }
 }
