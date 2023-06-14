@@ -7,14 +7,14 @@ const routes: RouteRecordRaw[] = [
     redirect: '/main'
   },
   {
+    name: 'login',
     path: '/login',
     component: () => import(/* webpackChunkName: 'login' */ '../views/login/LoginView.vue')
   },
   {
     name: 'main',
     path: '/main',
-    component: () => import(/* webpackChunkName: 'main' */ '../views/main/MainView.vue'),
-    children: []
+    component: () => import(/* webpackChunkName: 'main' */ '../views/main/MainView.vue')
   }
 ]
 

@@ -24,11 +24,9 @@ const login: Module<ILoginState, IRootState> = {
     [EMutations.mutateUserMenus](state, payload) {
       state.userMenus = payload.userMenus
       const routes = mapMenus2Routes(payload.userMenus)
-
       routes.forEach((route) => {
-        router.addRoute(route)
+        router.addRoute('main', route)
       })
-      console.log(router.getRoutes())
     }
   },
   actions: {

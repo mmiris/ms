@@ -8,4 +8,4 @@ import { ref, reactive } from 'vue'
   </div>
 </template>
 
-<style lang="ts" scoped></style>
+<style lang="less" scoped></style>

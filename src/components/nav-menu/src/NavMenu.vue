@@ -18,7 +18,7 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
       <img src="~@/assets/imgs/logo.svg" alt="Vue-TS" />
       <span v-show="!props.isFold" style="color: #2662b9">TS</span>
     </div>
-    <el-menu default-active="0-0" :collapse="props.isFold">
+    <el-menu :default-active="userMenus[0].children[0].url" :collapse="props.isFold" :router="true">
       <template v-for="(menu, index) in userMenus" :key="index">
         <template v-if="menu.type === 1">
           <el-sub-menu :index="`${index}`">
@@ -29,12 +29,12 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
               <span>{{ menu.name }}</span>
             </template>
             <template v-for="(subMenu, subIndex) in menu.children" :key="subIndex">
-              <el-menu-item :index="index + '-' + subIndex">{{ subMenu.name }}</el-menu-item>
+              <el-menu-item :index="subMenu.url">{{ subMenu.name }}</el-menu-item>
             </template>
           </el-sub-menu>
         </template>
         <template v-else>
-          <el-menu-item :index="`${index}`">
+          <el-menu-item :index="menu.url">
             <i v-if="menu.icon" :class="menu.icon" />
             <template #title>{{ menu.name }}</template>
           </el-menu-item>
@@ -51,10 +51,11 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
   height: 28px;
   box-sizing: border-box;
   margin-top: 10px;
+  justify-content: space-around;
 
   img {
     height: 100%;
-    flex: 1;
+    // flex: 1;
   }
 
   span {

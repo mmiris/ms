@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
+import IForm from '@/common-ui/IForm.vue'
 </script>
 
 <template>
   <div class="">
-    <h2>AnalysisOverview</h2>
+    <i-form />
   </div>
 </template>
 
-<style lang="ts" scoped></style>
+<style lang="less" scoped></style>

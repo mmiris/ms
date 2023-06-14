@@ -5,12 +5,12 @@ import AnalysisDashboard from './AnalysisDashboard.vue'
 const analysisRoutes: RouteRecordRaw[] = [
   {
     name: 'analysisOvervie',
-    path: '/analysis/overview',
+    path: 'analysis/overview',
     component: AnalysisOverview
   },
   {
     name: 'analysisDashbord',
-    path: '/analysis/dashboard',
+    path: 'analysis/dashboard',
     component: AnalysisDashboard
   }
 ]
