@@ -1,48 +1,20 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
-import IModel from './types/form'
+import { toRefs } from 'vue'
+import IModel, { IOptions } from './types'
 
-const model: IModel = reactive({
-  layout: {
-    labelWidth: '80px',
-    gutter: 50,
-    span: 12
-  },
-  items: [
-    {
-      type: 'input',
-      label: 'username',
-      placeholder: 'Enter your name'
-    },
-    {
-      type: 'password',
-      label: 'password',
-      placeholder: 'Enter your password'
-    },
-    {
-      type: 'select',
-      label: 'region',
-      placeholder: 'select your region',
-      options: [
-        { label: 'shanghai', value: 'shanghai' },
-        { label: 'shanghai', value: 'shanghai' }
-      ]
-    },
-    {
-      type: 'date',
-      label: 'date',
-      placeholder: { startPlaceholder: 'start date', endPlaceholder: 'end date' }
-    }
-  ]
-})
+const config = defineProps<{
+  model: IModel
+}>()
+
+const { layout, items } = toRefs(config.model)
 </script>
 
 <template>
   <div class="i-form">
-    <el-form :label-width="model.layout.labelWidth">
-      <el-row :gutter="model.layout.gutter">
-        <template v-for="(item, index) in model.items" :key="index">
-          <el-col :span="model.layout.span">
+    <el-form :label-width="layout.labelWidth">
+      <el-row :gutter="layout.gutter">
+        <template v-for="(item, index) in items" :key="index">
+          <el-col :="layout.span === undefined ? { xs: 24, sm: 24, md: 12, lg: 8, xl: 6 } : { span: layout.span }">
             <el-form-item :label="item.label">
               <template v-if="item.type === 'input'">
                 <el-input :placeholder="item.placeholder"></el-input>
@@ -52,12 +24,13 @@ const model: IModel = reactive({
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select :placeholder="item.placeholder">
-                  <el-option label="shanghai" value="shanghai">123</el-option>
-                  <el-option label="beijing" value="beijing"></el-option>
+                  <template v-for="(option, index) in (item.options as IOptions[])" :key="index">
+                    <el-option :label="option.label" :value="option.value"></el-option>
+                  </template>
                 </el-select>
               </template>
               <template v-else-if="item.type === 'date'">
-                <el-date-picker type="daterange" :="item.placeholder"></el-date-picker>
+                <el-date-picker :type="item.options" :="item.placeholder"></el-date-picker>
               </template>
             </el-form-item>
           </el-col>

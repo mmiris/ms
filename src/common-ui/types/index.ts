@@ -1,22 +1,20 @@
-interface IOptions {
+export interface IOptions {
   label: string
   value: string
 }
 
-interface IItem {
+export interface IItem {
   type: 'input' | 'password' | 'select' | 'date'
   label: string
   placeholder: string | { startPlaceholder: string; endPlaceholder: string }
-  options?: IOptions[]
+  options?: string | IOptions[]
 }
 
-interface IModel<T = IItem> {
+export default interface IModel {
   layout: {
     labelWidth: string
     gutter: number
     span?: number
   }
-  items: T[]
+  items: IItem[]
 }
-
-export default IModel

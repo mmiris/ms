@@ -1,7 +1,7 @@
 <template>
   <div class="login-form">
     <h2>登录</h2>
-    <el-form label-width="25%" :model="account" :rules="rules" ref="formRef" class="form">
+    <el-form label-width="auto" label-position="left" :model="account" :rules="rules" ref="formRef" class="form">
       <el-form-item label="用户名:" prop="name">
         <el-input type="text" v-model="account.name" />
       </el-form-item>
@@ -22,9 +22,9 @@
 import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { FormInstance } from 'element-plus'
-import rules from '../config/account-rules'
 import { EModules } from '@/store/type'
 import { EActions } from '@/store/login/type'
+import rules from '../config/account-rules'
 import localCache from '@/utils/local-cache'
 
 const store = useStore()
@@ -55,41 +55,34 @@ const loginAction = (formRef: FormInstance | undefined) => {
           localCache.removeItem('password')
           console.log(err)
         })
-
-      return true
     }
-    console.log('呜呜呜')
-    return false
   })
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
   padding: 3%;
-  margin-bottom: 5%;
+  margin-bottom: 8%;
   background-color: rgb(243, 246, 249);
   border-radius: 2%;
-}
 
-h2 {
-  margin-top: 0;
-  color: rgb(189, 216, 241);
-}
+  h2 {
+    margin-top: 0;
+    color: rgb(189, 216, 241);
+  }
 
-.el-form {
-  width: 90%;
-}
-.el-form-item__label {
-  justify-content: flex-start;
-}
-.login-action {
-  display: flex;
-  justify-content: center;
+  .el-input {
+    width: 230px;
+  }
+
+  .login-action {
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>

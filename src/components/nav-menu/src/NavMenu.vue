@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useStore } from 'vuex'
 import { IStore } from '@/store/type'
+import { useRoute } from 'vue-router'
 import { Setting, Monitor, Goods, ChatLineRound } from '@element-plus/icons-vue'
 
 const props = defineProps<{
@@ -18,7 +19,7 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
       <img src="~@/assets/imgs/logo.svg" alt="Vue-TS" />
       <span v-show="!props.isFold" style="color: #2662b9">TS</span>
     </div>
-    <el-menu :default-active="userMenus[0].children[0].url" :collapse="props.isFold" :router="true">
+    <el-menu :default-active="useRoute().path" :collapse="props.isFold" :router="true">
       <template v-for="(menu, index) in userMenus" :key="index">
         <template v-if="menu.type === 1">
           <el-sub-menu :index="`${index}`">
@@ -35,8 +36,12 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
         </template>
         <template v-else>
           <el-menu-item :index="menu.url">
-            <i v-if="menu.icon" :class="menu.icon" />
-            <template #title>{{ menu.name }}</template>
+            <template #title>
+              <el-icon>
+                <component :is="icons[index]"></component>
+              </el-icon>
+              <span>{{ menu.name }}</span>
+            </template>
           </el-menu-item>
         </template>
       </template>
