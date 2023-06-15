@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
-import IForm from '@/common-ui/IForm.vue'
-import IModel from '@/common-ui/types'
+import UForm from '@/common-ui/u-form'
+import type { IModel } from '@/common-ui/u-form'
 
 const model: IModel = reactive({
   layout: {
@@ -40,7 +40,7 @@ const model: IModel = reactive({
 
 <template>
   <div class="">
-    <i-form :model="model" />
+    <u-form :model="model" />
   </div>
 </template>
 

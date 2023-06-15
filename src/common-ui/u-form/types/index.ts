@@ -10,7 +10,7 @@ export interface IItem {
   options?: string | IOptions[]
 }
 
-export default interface IModel {
+export interface IModel {
   layout: {
     labelWidth: string
     gutter: number

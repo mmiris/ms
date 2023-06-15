@@ -18,8 +18,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import NavMenu from '@/components/nav-menu/src/NavMenu.vue'
-import NavHeader from '@/components/nav-header/src/NavHeader.vue'
+import NavMenu from '@/components/nav-menu'
+import NavHeader from '@/components/nav-header'
 
 let isFold = ref(false)
 const fold = (isFoldParams: boolean) => {

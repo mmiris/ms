@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { toRefs } from 'vue'
-import IModel, { IOptions } from './types'
+import { IModel, IOptions } from '..'
 
 const config = defineProps<{
   model: IModel
