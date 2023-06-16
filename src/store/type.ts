@@ -1,13 +1,18 @@
 import { ILoginState } from './login/type'
+import { ISytemState } from './main/system/types'
 
-export interface IRootState {
+interface IRootState {
   name: string
 }
 
-export enum EModules {
-  login = 'login'
+enum EModules {
+  login = 'login',
+  system = 'system'
 }
 
-export interface IStore<T = ILoginState> extends IRootState {
-  login: T
+interface IStore extends IRootState {
+  login: ILoginState
+  system: ISytemState
 }
+
+export { IRootState, EModules, IStore }

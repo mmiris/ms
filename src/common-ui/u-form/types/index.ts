@@ -1,16 +1,17 @@
-export interface IOptions {
+interface IOptions {
   label: string
   value: string
 }
 
-export interface IItem {
+interface IItem {
+  field: string
   type: 'input' | 'password' | 'select' | 'date'
   label: string
   placeholder: string | { startPlaceholder: string; endPlaceholder: string }
   options?: string | IOptions[]
 }
 
-export interface IModel {
+interface IFormConfig {
   layout: {
     labelWidth: string
     gutter: number
@@ -18,3 +19,5 @@ export interface IModel {
   }
   items: IItem[]
 }
+
+export { IOptions, IItem, IFormConfig }

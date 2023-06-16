@@ -29,10 +29,16 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    IEpTimer: typeof import('~icons/ep/timer')['default']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    IEpCircleCheck: typeof import('~icons/ep/circle-check')['default']
+    IEpCircleClose: typeof import('~icons/ep/circle-close')['default']
+    IEpRefresh: typeof import('~icons/ep/refresh')['default']
+    IEpSearch: typeof import('~icons/ep/search')['default']
     NavHeader: typeof import('./src/components/nav-header/src/NavHeader.vue')['default']
     NavMenu: typeof import('./src/components/nav-menu/src/NavMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchForm: typeof import('./src/components/search-form/src/SearchForm.vue')['default']
   }
 }

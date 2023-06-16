@@ -3,6 +3,7 @@ import SystemMenu from './SystemMenu.vue'
 import SysremUser from './SystemUser.vue'
 import SystemDepartment from './SystemDepartment.vue'
 import SystemRole from './SystemRole.vue'
+export * from './types'
 
 const systemRoutes: RouteRecordRaw[] = [
   {

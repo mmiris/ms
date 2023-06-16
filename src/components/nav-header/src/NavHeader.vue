@@ -1,20 +1,25 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
+import { IStore } from '@/store/type'
 import { Fold, Expand } from '@element-plus/icons-vue'
 import UBreadcrumb from '@/common-ui/u-breadcrumb/src/UBreadcurmb.vue'
+import { mapMenus2breadcrumbs } from '@/utils/map-menus-breadcrumb'
+import { useRoute } from 'vue-router'
 
 const emit = defineEmits(['fold'])
-const isFold = ref(false)
 
+const isFold = ref(false)
 const fold = () => {
   isFold.value = !isFold.value
   emit('fold', isFold.value)
 }
 
-const breadcrumbs = [
-  { name: 'ahhah', url: '/a/a/a' },
-  { name: 'xixiia', url: 'adadca' }
-]
+const userMenus = useStore<IStore>().state.login.userMenus
+const breadcrumbs = computed(() => {
+  const currentRoute = useRoute().path
+  return mapMenus2breadcrumbs(userMenus, currentRoute)
+})
 </script>
 
 <template>

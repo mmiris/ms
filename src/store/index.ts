@@ -1,6 +1,6 @@
 import { createStore, useStore, Store } from 'vuex'
 import login from './login/login'
-import { IStore } from './type'
+import system from './main/system'
 
 const store = createStore({
   state: {
@@ -10,12 +10,9 @@ const store = createStore({
   mutations: {},
   actions: {},
   modules: {
-    login
+    login,
+    system
   }
 })
-
-export function useStoreWithinModules() {
-  return useStore<Store<IStore>>()
-}
 
 export default store
