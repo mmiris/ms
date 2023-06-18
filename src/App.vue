@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import { useStore } from 'vuex'
 import { IStore } from './store/type'
 

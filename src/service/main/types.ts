@@ -1,3 +1,6 @@
-export enum ESystemApi {
-  userList = '/users/list'
+enum ESystemApi {
+  usersList = '/users/list',
+  roleList = 'role/list'
 }
+
+export { ESystemApi }

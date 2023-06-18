@@ -1,18 +1,30 @@
-interface ISeachModel {
-  username: string
-  password: string
-  region: string
-  date: string[]
+interface ILayout {
+  isShow?: boolean
+  fixed?: 'left' | 'right'
+  align?: 'left' | 'center' | 'right'
 }
 
-interface ITableConfig {
+interface IHeader {
+  title: string
+  btnCotent: string
+}
+
+interface column {
   prop: string
   label: string
   slotName: string
-  fixed?: 'left' | 'right'
   width?: number
-  miniWidth?: number
-  align?: string
+  align?: 'left' | 'center' | 'right'
+  fixed?: 'left' | 'right'
 }
 
-export { ISeachModel, ITableConfig }
+interface ITableConfig {
+  header: IHeader
+  layout?: {
+    select?: ILayout
+    index?: ILayout
+  }
+  columns: column[]
+}
+
+export { ITableConfig }

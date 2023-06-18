@@ -1,7 +1,4 @@
-<script lang="ts" setup>
-import UForm from '@/common-ui/u-form'
-import type { IModel } from '@/common-ui/u-form'
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class=""></div>

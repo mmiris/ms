@@ -1,5 +1,4 @@
 import { IFormConfig } from '@/common-ui/u-form'
-import { ITableConfig } from '..'
 
 const formConfig: IFormConfig = {
   layout: {
@@ -39,44 +38,4 @@ const formConfig: IFormConfig = {
   ]
 }
 
-const tableConfig: ITableConfig[] = [
-  {
-    prop: 'name',
-    label: '姓名',
-    slotName: 'name',
-    fixed: 'left',
-    align: 'center'
-  },
-  {
-    prop: 'realname',
-    label: '真实姓名',
-    slotName: 'realname',
-    align: 'center'
-  },
-  {
-    prop: 'enable',
-    label: '状态',
-    slotName: 'status',
-    align: 'center'
-  },
-  {
-    prop: 'cellphone',
-    label: '电话',
-    slotName: 'cellphone',
-    align: 'center'
-  },
-  {
-    prop: 'createAt',
-    label: '创建时间',
-    slotName: 'ceateAt',
-    align: 'center'
-  },
-  {
-    prop: 'updateAt',
-    label: '更新时间',
-    slotName: 'updateAt',
-    align: 'center'
-  }
-]
-
-export { formConfig, tableConfig }
+export default formConfig

@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
@@ -33,6 +34,9 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     IEpCircleCheck: typeof import('~icons/ep/circle-check')['default']
     IEpCircleClose: typeof import('~icons/ep/circle-close')['default']
+    IEpDelete: typeof import('~icons/ep/delete')['default']
+    IEpEdit: typeof import('~icons/ep/edit')['default']
+    IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpRefresh: typeof import('~icons/ep/refresh')['default']
     IEpSearch: typeof import('~icons/ep/search')['default']
     NavHeader: typeof import('./src/components/nav-header/src/NavHeader.vue')['default']
@@ -40,5 +44,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchForm: typeof import('./src/components/search-form/src/SearchForm.vue')['default']
+    TableContent: typeof import('./src/components/table-content/src/TableContent.vue')['default']
   }
 }

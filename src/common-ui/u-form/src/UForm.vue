@@ -1,20 +1,19 @@
 <script lang="ts" setup>
 import { ref, watch, toRefs } from 'vue'
 import { IFormConfig, IOptions } from '..'
-import { ISeachModel } from '@/views/main/system'
 
 const props = defineProps<{
   config: IFormConfig
-  modelValue: ISeachModel
+  modelValue: any
 }>()
 
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: ISeachModel): void
+  (e: 'update:modelValue', value: any): void
 }>()
 
 const { layout, items } = toRefs(ref(props.config).value)
-const model = ref({ ...props.modelValue })
 
+const model = ref({ ...props.modelValue })
 watch(
   model,
   (value) => {
@@ -27,26 +26,26 @@ watch(
 <template>
   <div class="u-form">
     <slot name="header"></slot>
-    <el-form :label-width="layout.labelWidth" :model="model">
+    <el-form :label-width="layout.labelWidth">
       <el-row :gutter="layout.gutter">
         <template v-for="item in items" :key="item.label">
           <el-col :="layout.span === undefined ? { xs: 24, sm: 24, md: 12, lg: 8, xl: 6 } : { span: layout.span }">
             <el-form-item :label="item.label">
               <template v-if="item.type === 'input'">
-                <el-input :placeholder="item.placeholder" v-model="model.username"></el-input>
+                <el-input :placeholder="item.placeholder" v-model="model[item.field]"></el-input>
               </template>
               <template v-else-if="item.type === 'password'">
-                <el-input :placeholder="item.placeholder" v-model="model.password" show-password></el-input>
+                <el-input :placeholder="item.placeholder" v-model="model[item.field]" show-password></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
-                <el-select :placeholder="item.placeholder" v-model="model.region">
+                <el-select :placeholder="item.placeholder" v-model="model[item.field]">
                   <template v-for="option in (item.options as IOptions[])" :key="option.label">
                     <el-option :label="option.label" :value="option.value"></el-option>
                   </template>
                 </el-select>
               </template>
               <template v-else-if="item.type === 'date'">
-                <el-date-picker :type="item.options" :="item.placeholder" v-model="model.date"></el-date-picker>
+                <el-date-picker :type="item.options" :="item.placeholder" v-model="model[item.field]"></el-date-picker>
               </template>
             </el-form-item>
           </el-col>

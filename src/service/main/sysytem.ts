@@ -1,11 +1,11 @@
 import service from '..'
 import { ESystemApi } from './types'
 
-const requestUserList = (queryInfo: any) => {
+const requestList = (url: 'users' | 'role', queryInfo: any) => {
   return service.post({
-    url: ESystemApi.userList,
+    url: ESystemApi[`${url}List`],
     data: queryInfo
   })
 }
 
-export { requestUserList }
+export { requestList }

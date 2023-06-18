@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import formConfig from './config/role.formConfig'
+import tableConfig from './config/role.tableConfig'
+import SearchForm from '@/components/search-form'
+import TableContent from '@/components/table-content'
 </script>
 
 <template>
-  <div class="">
-    <h2>SystemRole</h2>
+  <div class="system-user">
+    <search-form :config="formConfig" />
+    <table-content :config="tableConfig" name="role"></table-content>
   </div>
 </template>
 

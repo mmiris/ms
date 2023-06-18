@@ -2,18 +2,25 @@
 import { ref } from 'vue'
 import UForm from '@/common-ui/u-form'
 import { IFormConfig } from '@/common-ui/u-form'
-import { ISeachModel } from '@/views/main/system'
 
-defineProps<{
+const props = defineProps<{
   config: IFormConfig
 }>()
 
-const model = ref<ISeachModel>({
-  username: '1212',
-  password: '1313',
-  region: '1414',
-  date: ['1515', '1616']
-})
+const model: any = ref({})
+const genFormModel = () => {
+  for (const item of props.config.items) {
+    if (item.type === 'date') {
+      model.value[item.field] = []
+    } else {
+      model.value[item.field] = ''
+    }
+  }
+}
+
+const resetForm = () => {
+  genFormModel()
+}
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const model = ref<ISeachModel>({
       </template>
       <template #footer>
         <div class="operation">
-          <el-button>
+          <el-button @click="resetForm">
             <el-icon>
               <i-ep-refresh />
             </el-icon>
