@@ -9,7 +9,7 @@
           <nav-header @fold="fold" />
         </el-header>
         <el-main>
-          <router-view />
+          <el-config-provider :locale="zhCn"><router-view /></el-config-provider>
         </el-main>
       </el-container>
     </el-container>
@@ -20,6 +20,7 @@
 import { ref } from 'vue'
 import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 let isFold = ref(false)
 const fold = (isFoldParams: boolean) => {

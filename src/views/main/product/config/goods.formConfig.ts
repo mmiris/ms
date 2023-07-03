@@ -11,6 +11,12 @@ const formConfig: IFormConfig = {
       type: 'input',
       label: 'id',
       placeholder: '请输入id'
+    },
+    {
+      field: 'name',
+      type: 'input',
+      label: '商品名称',
+      placeholder: '请输入商品名称'
     }
   ]
 }

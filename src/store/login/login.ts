@@ -5,13 +5,15 @@ import { ILoginState, EMutations, EActions, IAccount } from './type'
 import { requestLogin, requestUserInfo, requestUserMenus } from '@/service/login/login'
 import localCache from '@/utils/local-cache'
 import mapMenus2Routes from '@/utils/map-menus-routes'
+import mapMenus2Permissions from '@/utils/map-menus-permission'
 
 const login: Module<ILoginState, IRootState> = {
   namespaced: true,
   state: {
     token: '',
     userInfo: {},
-    userMenus: []
+    userMenus: [],
+    permissions: []
   },
   getters: {},
   mutations: {
@@ -27,6 +29,7 @@ const login: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+      state.permissions = mapMenus2Permissions(payload.userMenus)
     }
   },
   actions: {

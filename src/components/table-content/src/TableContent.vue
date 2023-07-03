@@ -1,45 +1,88 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import { IStore, EModules } from '@/store/type'
 import { EActions } from '@/store/main/system/types'
 import { ITableConfig } from '@/views/main/system'
 import UTable from '@/common-ui/u-table'
 import dateFormat from '@/utils/date-format'
+import verifyPermission from '@/hooks/use-permission-verification'
 
 const props = defineProps<{
   config: ITableConfig
-  name: string
+  name: 'users' | 'role' | 'goods' | 'menu'
 }>()
 
+const isCreate = verifyPermission(props.name, 'create')
+const isUpdate = verifyPermission(props.name, 'update')
+const isDelete = verifyPermission(props.name, 'delete')
+const isQuery = verifyPermission(props.name, 'query')
+
 const store = useStore<IStore>()
+const pageInfo = ref({ currentPage: 1, pageSize: 10 })
 
-store.dispatch(EModules.system + '/' + EActions.actionDataList, {
-  url: `${props.name}`,
-  queryInfo: { offset: 0, size: 20 }
+const searchContent = (model?: any) => {
+  if (!isQuery) return
+  store.dispatch(EModules.system + '/' + EActions.actionDataList, {
+    url: `${props.name}`,
+    queryInfo: {
+      offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
+      size: pageInfo.value.pageSize,
+      ...model
+    }
+  })
+}
+
+searchContent()
+
+watch(pageInfo, () => {
+  searchContent()
 })
 
-const data = computed(() => {
-  return (useStore<IStore>().state.system as any)[`${props.name}List`]
+const data = computed(() => store.state.system[`${props.name}List`])
+const total = computed(() => store.state.system[`${props.name}Total`])
+
+const excludeSlots = ['createAt', 'updateAt', 'status']
+const slots = props.config.columns.filter((item) => {
+  if (item.slotName && !(excludeSlots.indexOf(item.slotName) !== -1)) return true
 })
+
+defineExpose({ searchContent })
 </script>
 
 <template>
   <div class="table-content">
-    <u-table :data="data" :config="config">
+    <u-table :data="data" :config="config" :total="total" v-model:page-info="pageInfo">
+      <template v-if="isCreate" #hander-operation="scope">
+        <el-button type="primary" size="small" plain>
+          <el-icon><i-ep-Plus /></el-icon>
+          <span>{{ scope.content }}</span>
+        </el-button>
+      </template>
+      <template #operations>
+        <el-button v-if="isUpdate" type="primary" size="small" link>
+          <el-icon><i-ep-Edit /></el-icon>
+          <span>编辑</span>
+        </el-button>
+        <el-button v-if="isDelete" type="danger" size="small" link>
+          <el-icon><i-ep-Delete /></el-icon>
+          <span>删除</span>
+        </el-button>
+      </template>
       <template #status="scope">
-        <template v-if="scope.row.enable">
-          <el-icon><i-ep-CircleCheck style="color: greenyellow" /></el-icon>
-        </template>
-        <template v-else>
-          <el-icon><i-ep-CircleClose style="color: red" /></el-icon>
-        </template>
+        <el-icon>
+          <i-ep-CircleCheck v-if="scope.row.enable || scope.row.status" style="color: greenyellow" />
+          <i-ep-CircleClose v-else style="color: red" />
+        </el-icon>
       </template>
       <template #createAt="scope">
         <span>{{ dateFormat(scope.row.createAt) }}</span>
       </template>
       <template #updateAt="scope">
         <span>{{ dateFormat(scope.row.updateAt) }}</span>
+      </template>
+      <template v-for="slot in slots" :key="slot.prop" #[slot.prop]="scope">
+        <slot :name="slot.slotName" :row="scope.row"></slot>
       </template>
     </u-table>
   </div>

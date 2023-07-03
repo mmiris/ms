@@ -8,7 +8,7 @@ const rules: FormRules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[\w]{6,16}$/,
+      pattern: /^[\w]{1,16}$/,
       message: '由6~16位字母、数字或下划线组成',
       trigger: 'blur'
     }

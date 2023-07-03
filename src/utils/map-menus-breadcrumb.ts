@@ -1,4 +1,5 @@
 import { IBreadcrumb } from '@/common-ui/u-breadcrumb'
+
 export function mapMenus2breadcrumbs(userMenus: any, currentRoute: string): IBreadcrumb[] {
   const breadcrumbs: IBreadcrumb[] = []
   const recurseBreadcrumb: any = (items: any, currentRoute: string) => {

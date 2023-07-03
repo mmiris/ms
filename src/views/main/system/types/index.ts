@@ -9,13 +9,18 @@ interface IHeader {
   btnCotent: string
 }
 
-interface column {
+interface IColumn {
   prop: string
   label: string
-  slotName: string
+  slotName?: string
   width?: number
   align?: 'left' | 'center' | 'right'
   fixed?: 'left' | 'right'
+}
+
+interface ITree {
+  rowKey: string
+  children: string
 }
 
 interface ITableConfig {
@@ -24,7 +29,8 @@ interface ITableConfig {
     select?: ILayout
     index?: ILayout
   }
-  columns: column[]
+  columns: IColumn[]
+  tree?: ITree
 }
 
 export { ITableConfig }

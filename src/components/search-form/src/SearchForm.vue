@@ -3,6 +3,10 @@ import { ref } from 'vue'
 import UForm from '@/common-ui/u-form'
 import { IFormConfig } from '@/common-ui/u-form'
 
+const emit = defineEmits<{
+  (e: 'searchContent', value: any): void
+}>()
+
 const props = defineProps<{
   config: IFormConfig
 }>()
@@ -17,9 +21,15 @@ const genFormModel = () => {
     }
   }
 }
+genFormModel()
 
 const resetForm = () => {
   genFormModel()
+  searchContent()
+}
+
+const searchContent = (model?: any) => {
+  emit('searchContent', model)
 }
 </script>
 
@@ -32,15 +42,11 @@ const resetForm = () => {
       <template #footer>
         <div class="operation">
           <el-button @click="resetForm">
-            <el-icon>
-              <i-ep-refresh />
-            </el-icon>
+            <el-icon><i-ep-refresh /></el-icon>
             <span>重置</span>
           </el-button>
-          <el-button type="primary">
-            <el-icon>
-              <i-ep-search />
-            </el-icon>
+          <el-button type="primary" @click="searchContent(model)">
+            <el-icon><i-ep-search /></el-icon>
             <span>搜索</span>
           </el-button>
         </div>

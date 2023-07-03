@@ -7,3 +7,4 @@ declare module '*.vue' {
 }
 
 declare const ElLoading: typeof import('element-plus')['ElLoading']
+declare module 'element-plus/dist/locale/zh-cn.mjs'

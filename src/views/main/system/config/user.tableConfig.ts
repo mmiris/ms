@@ -16,15 +16,19 @@ const tableConfig: ITableConfig = {
     {
       prop: 'name',
       label: '姓名',
-      slotName: 'name',
       fixed: 'left',
-      width: 120,
+      width: 100,
       align: 'center'
     },
     {
       prop: 'realname',
       label: '真实姓名',
-      slotName: 'realname',
+      align: 'center',
+      width: 120
+    },
+    {
+      prop: 'cellphone',
+      label: '电话',
       align: 'center',
       width: 120
     },
@@ -33,13 +37,7 @@ const tableConfig: ITableConfig = {
       label: '状态',
       slotName: 'status',
       align: 'center',
-      width: 100
-    },
-    {
-      prop: 'cellphone',
-      label: '电话',
-      slotName: 'cellphone',
-      align: 'center'
+      width: 80
     },
     {
       prop: 'createAt',
