@@ -22,7 +22,7 @@ export default class Service {
           this._loader = ElLoading.service({
             lock: true,
             text: '加载中。。。',
-            background: 'rgba(0, 0, 0, 0.6)'
+            background: 'rgba(0, 0, 0, 0.5)'
           })
         }
         this._loading = this._isLoading
