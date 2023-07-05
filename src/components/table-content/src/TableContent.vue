@@ -8,6 +8,11 @@ import UTable from '@/common-ui/u-table'
 import dateFormat from '@/utils/date-format'
 import verifyPermission from '@/hooks/use-permission-verification'
 
+const emit = defineEmits<{
+  (e: 'handleNew'): void
+  (e: 'handleEdit', row: any): void
+}>()
+
 const props = defineProps<{
   config: ITableConfig
   name: 'users' | 'role' | 'goods' | 'menu'
@@ -32,7 +37,6 @@ const searchContent = (model?: any) => {
     }
   })
 }
-
 searchContent()
 
 watch(pageInfo, () => {
@@ -47,6 +51,20 @@ const slots = props.config.columns.filter((item) => {
   if (item.slotName && !(excludeSlots.indexOf(item.slotName) !== -1)) return true
 })
 
+const handelDelete = (row: any) => {
+  store.dispatch(`${EModules.system}/${EActions.actDeleteRow}`, {
+    url: props.name,
+    id: row.id
+  })
+}
+
+const handleNew = () => {
+  emit('handleNew')
+}
+const handleEdit = (row: any) => {
+  emit('handleEdit', row)
+}
+
 defineExpose({ searchContent })
 </script>
 
@@ -54,17 +72,17 @@ defineExpose({ searchContent })
   <div class="table-content">
     <u-table :data="data" :config="config" :total="total" v-model:page-info="pageInfo">
       <template v-if="isCreate" #hander-operation="scope">
-        <el-button type="primary" size="small" plain>
+        <el-button type="primary" size="small" plain @click="handleNew">
           <el-icon><i-ep-Plus /></el-icon>
           <span>{{ scope.content }}</span>
         </el-button>
       </template>
-      <template #operations>
-        <el-button v-if="isUpdate" type="primary" size="small" link>
+      <template #operations="scope">
+        <el-button v-if="isUpdate" type="primary" size="small" link @click="handleEdit(scope.row)">
           <el-icon><i-ep-Edit /></el-icon>
           <span>编辑</span>
         </el-button>
-        <el-button v-if="isDelete" type="danger" size="small" link>
+        <el-button v-if="isDelete" @click="handelDelete(scope.row)" type="danger" size="small" link>
           <el-icon><i-ep-Delete /></el-icon>
           <span>删除</span>
         </el-button>
@@ -81,7 +99,7 @@ defineExpose({ searchContent })
       <template #updateAt="scope">
         <span>{{ dateFormat(scope.row.updateAt) }}</span>
       </template>
-      <template v-for="slot in slots" :key="slot.prop" #[slot.prop]="scope">
+      <template v-for="slot in slots" :key="slot.prop" #[slot.slotName!]="scope">
         <slot :name="slot.slotName" :row="scope.row"></slot>
       </template>
     </u-table>

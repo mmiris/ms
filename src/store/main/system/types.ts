@@ -17,11 +17,15 @@ enum EMutations {
   mutateGoodsList = 'mutateGoodsList',
   mutateGoodsTotal = 'mutateGoodsTotal',
   mutateMenuList = 'mutateMenuList',
-  mutateMenuTotal = 'mutateMenuTotal'
+  mutateMenuTotal = 'mutateMenuTotal',
+  mutateDepartmentList = 'MutateDepartmentList'
 }
 
 enum EActions {
-  actionDataList = 'actionDataList'
+  actionDataList = 'actionDataList',
+  actDeleteRow = 'actDeleteRow',
+  actNewRow = 'actNewRow',
+  actEditRow = 'actEditRow'
 }
 
 export { ISytemState, EMutations, EActions }

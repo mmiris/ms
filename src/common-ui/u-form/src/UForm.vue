@@ -30,7 +30,7 @@ watch(
       <el-row :gutter="layout.gutter">
         <template v-for="item in items" :key="item.label">
           <el-col :="layout.span === undefined ? { xs: 24, sm: 24, md: 12, lg: 8, xl: 6 } : { span: layout.span }">
-            <el-form-item :label="item.label">
+            <el-form-item v-if="!item.ishidden" :label="item.label">
               <template v-if="item.type === 'input'">
                 <el-input :placeholder="item.placeholder" v-model="model[item.field]"></el-input>
               </template>
@@ -58,7 +58,7 @@ watch(
 
 <style lang="less" scoped>
 .u-form {
-  padding: 18px 18px;
+  padding: 18px;
   background-color: #fdfdfd;
   border-radius: 2px;
   box-shadow: 0 0 3px 0.1px var(--el-border-color);

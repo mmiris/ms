@@ -1,9 +1,9 @@
 import { IFormConfig } from '@/common-ui/u-form'
 
-const formConfig: IFormConfig = {
+const dialogConf: IFormConfig = {
   layout: {
     labelWidth: '80px',
-    gutter: 50
+    span: 24
   },
   items: [
     {
@@ -19,22 +19,33 @@ const formConfig: IFormConfig = {
       placeholder: '请输入真实姓名'
     },
     {
+      field: 'password',
+      type: 'password',
+      label: '密码',
+      placeholder: '请输入密码',
+      ishidden: false
+    },
+    {
       field: 'cellphone',
       type: 'input',
       label: '电话',
       placeholder: '请输入电话'
     },
     {
-      field: 'createAt',
-      type: 'date',
-      label: '创建时间',
-      options: 'datetimerange',
-      placeholder: {
-        startPlaceholder: '起始日期',
-        endPlaceholder: '结束日期'
-      }
+      field: 'departmentId',
+      type: 'select',
+      label: '部门',
+      placeholder: '请选择部门',
+      options: []
+    },
+    {
+      field: 'roleId',
+      type: 'select',
+      label: '角色',
+      placeholder: '请选择角色',
+      options: []
     }
   ]
 }
 
-export default formConfig
+export default dialogConf

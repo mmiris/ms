@@ -1,7 +1,7 @@
 import { Module } from 'vuex'
 import { IRootState } from '@/store/type'
 import { ISytemState, EMutations, EActions } from './types'
-import { requestList } from '@/service/main/sysytem'
+import { requestList, deleteRowService, newRowService, editRowService } from '@/service/main/sysytem'
 
 type TCpnName = 'Users' | 'Role'
 
@@ -52,6 +52,18 @@ const system: Module<ISytemState, IRootState> = {
       const cpnName: TCpnName = payload.url.charAt(0).toUpperCase() + payload.url.slice(1)
       commit(EMutations[`mutate${cpnName}List`], listData)
       commit(EMutations[`mutate${cpnName}Total`], totalCount)
+    },
+    async [EActions.actDeleteRow]({ dispatch }, payload) {
+      await deleteRowService(payload.url, payload.id)
+      dispatch(EActions.actionDataList, { url: payload.url, queryInfo: { offset: 0, size: 100 } })
+    },
+    async [EActions.actNewRow]({ dispatch }, payload) {
+      await newRowService(payload.url, payload.row)
+      dispatch(EActions.actionDataList, { url: payload.url, queryInfo: { offset: 0, size: 100 } })
+    },
+    async [EActions.actEditRow]({ dispatch }, payload) {
+      await editRowService(payload.url, payload.id, payload.row)
+      dispatch(EActions.actionDataList, { url: payload.url, queryInfo: { offset: 0, size: 100 } })
     }
   }
 }

@@ -60,9 +60,11 @@ const handleCurrentChange = (currentPage: number) => {
         </el-table-column>
       </template>
       <el-table-column label="操作" width="130px" fixed="right" align="center">
-        <slot name="operations">
-          <span> -- </span>
-        </slot>
+        <template #default="scope">
+          <slot name="operations" :row="scope.row">
+            <span> -- </span>
+          </slot>
+        </template>
       </el-table-column>
     </el-table>
     <div v-if="!tree" class="footer">

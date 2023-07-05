@@ -3,6 +3,8 @@ import { ISytemState } from './main/system/types'
 
 interface IRootState {
   name: string
+  departmentList: any[]
+  roleList: any[]
 }
 
 enum EModules {
@@ -15,4 +17,4 @@ interface IStore extends IRootState {
   system: ISytemState
 }
 
-export { IRootState, EModules, IStore }
+export { IRootState, IStore, EModules }

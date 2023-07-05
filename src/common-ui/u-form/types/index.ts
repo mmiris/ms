@@ -9,12 +9,13 @@ interface IItem {
   label: string
   placeholder: string | { startPlaceholder: string; endPlaceholder: string }
   options?: string | IOptions[]
+  ishidden?: boolean
 }
 
 interface IFormConfig {
   layout: {
     labelWidth: string
-    gutter: number
+    gutter?: number
     span?: number
   }
   items: IItem[]

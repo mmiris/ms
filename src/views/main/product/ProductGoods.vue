@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import SearchForm from '@/components/search-form'
 import TableContent from '@/components/table-content'
 import formConfig from '@/views/main/product/config/goods.formConfig'
 import tableConfig from '@/views/main/product/config/goods.tableConfig'
+import useSearchForm from '@/hooks/use-search-form'
 
-const tableContentRef = ref()
-const searchContent = (model: any) => {
-  tableContentRef.value.searchContent(model)
-}
+const { tableContentRef, searchContent } = useSearchForm()
 </script>
 
 <template>

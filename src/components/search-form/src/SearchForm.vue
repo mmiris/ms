@@ -12,19 +12,14 @@ const props = defineProps<{
 }>()
 
 const model: any = ref({})
-const genFormModel = () => {
-  for (const item of props.config.items) {
-    if (item.type === 'date') {
-      model.value[item.field] = []
-    } else {
-      model.value[item.field] = ''
-    }
-  }
+for (const item of props.config.items) {
+  model.value[item.field] = ''
 }
-genFormModel()
 
 const resetForm = () => {
-  genFormModel()
+  for (const item of props.config.items) {
+    model.value[item.field] = ''
+  }
   searchContent()
 }
 
