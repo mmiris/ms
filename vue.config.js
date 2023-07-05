@@ -9,7 +9,6 @@ module.exports = defineConfig({
       proxy: {
         '/api': {
           target: 'http://codercba.com:5000',
-          // target: 'http://127.0.0.1:3000/api',
           pathRewrite: { '^/api': '' },
           changeOrigin: true,
           secure: false
