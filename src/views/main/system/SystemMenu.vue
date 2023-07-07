@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// import { ref } from 'vue'
 import SearchForm from '@/components/search-form'
 import TableContent from '@/components/table-content'
 import formConfig from '@/views/main/system/config/menu.formConfig'

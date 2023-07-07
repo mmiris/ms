@@ -36,6 +36,7 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTree: typeof import('element-plus/es')['ElTree']
     IEpCircleCheck: typeof import('~icons/ep/circle-check')['default']
     IEpCircleClose: typeof import('~icons/ep/circle-close')['default']
     IEpDelete: typeof import('~icons/ep/delete')['default']

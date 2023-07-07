@@ -15,7 +15,7 @@ const tableConfig: ITableConfig = {
   columns: [
     {
       prop: 'id',
-      label: 'ID',
+      label: 'id',
       slotName: 'id',
       fixed: 'left',
       width: 120,

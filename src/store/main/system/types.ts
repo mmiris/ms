@@ -7,6 +7,10 @@ interface ISytemState {
   goodsTotal: number
   menuList: any[]
   menuTotal: number
+  departmentList: any[]
+  departmentTotal: number
+  categoryList: any[]
+  categoryTotal: number
 }
 
 enum EMutations {
@@ -18,7 +22,10 @@ enum EMutations {
   mutateGoodsTotal = 'mutateGoodsTotal',
   mutateMenuList = 'mutateMenuList',
   mutateMenuTotal = 'mutateMenuTotal',
-  mutateDepartmentList = 'MutateDepartmentList'
+  mutateDepartmentList = 'mutateDepartmentList',
+  mutateDepartmentTotal = 'mutateDepartmentTotal',
+  mutateCategoryList = 'mutateCategoryList',
+  mutateCategoryTotal = 'mutateCategoryTotal'
 }
 
 enum EActions {

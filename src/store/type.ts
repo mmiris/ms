@@ -5,6 +5,7 @@ interface IRootState {
   name: string
   departmentList: any[]
   roleList: any[]
+  menuList: any[]
 }
 
 enum EModules {

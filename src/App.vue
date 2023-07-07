@@ -12,6 +12,7 @@ const store = useStore<IStore>()
 
 store.dispatch(EActions.actionDataList, { url: 'department' })
 store.dispatch(EActions.actionDataList, { url: 'role' })
+store.dispatch(EActions.actionDataList, { url: 'menu' })
 
 watch(store.state.login, () => {
   sessionStorage.setItem('state', JSON.stringify(store.state))

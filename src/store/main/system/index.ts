@@ -15,7 +15,11 @@ const system: Module<ISytemState, IRootState> = {
     goodsList: [],
     goodsTotal: 0,
     menuList: [],
-    menuTotal: 0
+    menuTotal: 0,
+    departmentList: [],
+    departmentTotal: 0,
+    categoryList: [],
+    categoryTotal: 0
   },
   getters: {},
   mutations: {
@@ -42,6 +46,18 @@ const system: Module<ISytemState, IRootState> = {
     },
     [EMutations.mutateMenuTotal](state, payload) {
       state.menuTotal = payload.total
+    },
+    [EMutations.mutateDepartmentList](state, payload) {
+      state.departmentList = payload.list
+    },
+    [EMutations.mutateDepartmentTotal](state, payload) {
+      state.departmentTotal = payload.total
+    },
+    [EMutations.mutateCategoryList](state, payload) {
+      state.categoryList = payload.list
+    },
+    [EMutations.mutateCategoryTotal](state, payload) {
+      state.categoryTotal = payload.total
     }
   },
   actions: {

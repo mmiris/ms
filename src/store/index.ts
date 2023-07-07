@@ -9,7 +9,8 @@ const store = createStore<IRootState>({
   state: {
     name: 'shadow',
     departmentList: [],
-    roleList: []
+    roleList: [],
+    menuList: []
   },
   getters: {},
   mutations: {
@@ -18,6 +19,9 @@ const store = createStore<IRootState>({
     },
     [EMutations.mutateRoleList](state, payload) {
       state.roleList = payload.list
+    },
+    [EMutations.mutateMenuList](state, payload) {
+      state.menuList = payload.list
     }
   },
   actions: {

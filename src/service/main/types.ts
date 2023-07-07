@@ -3,7 +3,8 @@ enum ESystemApi {
   roleList = 'role/list',
   goodsList = 'goods/list',
   menuList = 'menu/list',
-  departmentList = 'department/list'
+  departmentList = 'department/list',
+  categoryList = 'category/list'
 }
 
 export { ESystemApi }

@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   config: ITableConfig
-  name: 'users' | 'role' | 'goods' | 'menu'
+  name: 'users' | 'role' | 'goods' | 'menu' | 'department' | 'category'
 }>()
 
 const isCreate = verifyPermission(props.name, 'create')

@@ -10,16 +10,17 @@ const props = defineProps<{
   config: IFormConfig
   model: any
   title: string
+  otherModel?: any
 }>()
 
 const dialogVisible = ref(false)
-const tempModel: any = ref({})
+const tempModel = ref({})
 
 watch(
   () => props.model,
   (value) => {
     props.config.items.forEach((item) => {
-      tempModel.value[item.field] = value[item.field]
+      ;(tempModel as any).value[item.field] = value[item.field]
     })
   }
 )
@@ -28,17 +29,16 @@ const store = useStore<IStore>()
 
 const handleConfirm = () => {
   dialogVisible.value = false
-
   if (Object.keys(props.model).length) {
     store.dispatch(`${EModules.system}/${EActions.actEditRow}`, {
       url: props.name,
       id: props.model.id,
-      row: tempModel.value
+      row: { ...tempModel.value, menuList: props.otherModel }
     })
   } else {
     store.dispatch(`${EModules.system}/${EActions.actNewRow}`, {
       url: props.name,
-      row: tempModel.value
+      row: { ...tempModel.value, menuList: props.otherModel }
     })
   }
 }
@@ -50,6 +50,7 @@ defineExpose({ dialogVisible })
   <div class="dialog-form">
     <el-dialog v-model="dialogVisible" :title="title" width="30%" center destroy-on-close>
       <u-form :config="config" v-model="tempModel" />
+      <slot />
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false"> 取消 </el-button>

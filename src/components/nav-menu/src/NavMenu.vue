@@ -60,7 +60,6 @@ const icons = [Setting, Monitor, Goods, ChatLineRound]
 
   img {
     height: 100%;
-    // flex: 1;
   }
 
   span {

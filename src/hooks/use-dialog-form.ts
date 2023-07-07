@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { IFormConfig } from '@/common-ui/u-form'
 import { ITableConfig } from '@/views/main/system'
 
-export const useDialogForm = (dialogConf: IFormConfig, tableConfig: ITableConfig) => {
+export const useDialogForm = (dialogConf: IFormConfig, tableConfig: ITableConfig, cbFn?: (item: any) => any) => {
   const dialogModel = ref()
   const title = ref('')
   const dialogFormRef = ref()
@@ -26,6 +26,7 @@ export const useDialogForm = (dialogConf: IFormConfig, tableConfig: ITableConfig
     hiddenConvert(dialogConf, true)
     title.value = '编辑'
     dialogModel.value = { ...row }
+    cbFn && cbFn(row)
   }
 
   return { title, dialogModel, dialogFormRef, handleNew, handleEdit }
