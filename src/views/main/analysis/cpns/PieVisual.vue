@@ -13,14 +13,15 @@ const option = computed<EChartsOption>(() => ({
     trigger: 'item'
   },
   legend: {
-    top: 'top',
+    top: 'bottom',
     left: 'left',
-    orient: 'vertical'
+    orient: 'horizontal'
   },
   series: [
     {
       type: 'pie',
       radius: ['20%', '70%'],
+      center: ['50%', '40%'],
       avoidLabelOverlap: false,
       itemStyle: {
         borderRadius: 10,
