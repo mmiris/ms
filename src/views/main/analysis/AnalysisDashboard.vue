@@ -57,7 +57,6 @@ const mapData = computed(() => {
       <ElCol :span="10"><MapVisual title="不同城市商品销量" :data="mapData" /></ElCol>
       <ElCol :span="7"><RoseVisual title="分类商品数量1" :data="pieData" /></ElCol>
     </ElRow>
-    <div class="divider"></div>
     <ElRow :gutter="10">
       <ElCol :span="12"><LineVisual title="分类商品销量" :data="lineData" /></ElCol>
       <ElCol :span="12"><BarVisual title="分类商品收藏量" :data="barData" /></ElCol>
@@ -65,8 +64,4 @@ const mapData = computed(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
-.divider {
-  margin-top: 20px;
-}
-</style>
+<style lang="less" scoped></style>

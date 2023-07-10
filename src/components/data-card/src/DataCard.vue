@@ -4,7 +4,7 @@ import UEcharts from '@/common-ui/u-echarts'
 
 defineProps<{
   title: string
-  option: EChartsOption
+  option?: EChartsOption
 }>()
 </script>
 
@@ -16,9 +16,17 @@ defineProps<{
           <span>{{ title }}</span>
         </div>
       </template>
-      <UEcharts :option="option" />
+      <slot>
+        <div v-if="option">
+          <UEcharts :option="option" />
+        </div>
+      </slot>
     </el-card>
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.data-card {
+  margin-bottom: 18px;
+}
+</style>
