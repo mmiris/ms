@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/local-cache'
 
 const routes: RouteRecordRaw[] = [
@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   routes,
-  history: createWebHistory()
+  history: createWebHashHistory()
 })
 
 router.beforeEach((to) => {

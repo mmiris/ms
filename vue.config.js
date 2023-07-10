@@ -6,6 +6,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     devServer: {
+      historyApiFallback: true,
       proxy: {
         '/api': {
           target: 'http://codercba.com:5000',
