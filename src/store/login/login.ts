@@ -2,6 +2,7 @@ import router from '@/router'
 import { Module } from 'vuex'
 import { IRootState } from '../type'
 import { ILoginState, EMutations, EActions, IAccount } from './type'
+import { EActions as EActions1 } from '../main/system/types'
 import { requestLogin, requestUserInfo, requestUserMenus } from '@/service/login/login'
 import localCache from '@/utils/local-cache'
 import mapMenus2Routes from '@/utils/map-menus-routes'
@@ -15,7 +16,6 @@ const login: Module<ILoginState, IRootState> = {
     userMenus: [],
     permissions: []
   },
-  getters: {},
   mutations: {
     [EMutations.mutateToken](state, payload) {
       state.token = payload.token
@@ -33,7 +33,7 @@ const login: Module<ILoginState, IRootState> = {
     }
   },
   actions: {
-    [EActions.actionLogin]: async ({ commit }, payload: IAccount) => {
+    [EActions.actionLogin]: async ({ commit, dispatch }, payload: IAccount) => {
       const loginRes = await requestLogin(payload)
       const loginData = { token: loginRes.data.data.token, id: loginRes.data.data.id }
       commit(EMutations.mutateToken, loginData)
@@ -46,6 +46,10 @@ const login: Module<ILoginState, IRootState> = {
       const userMenusRes = await requestUserMenus(userInfoData.userInfo.role.id)
       const userMenusData = { userMenus: userMenusRes.data.data }
       commit(EMutations.mutateUserMenus, userMenusData)
+
+      dispatch(EActions1.actionDataList, { url: 'department' }, { root: true })
+      dispatch(EActions1.actionDataList, { url: 'role' }, { root: true })
+      dispatch(EActions1.actionDataList, { url: 'menu' }, { root: true })
 
       router.push('/main')
       return loginData.token

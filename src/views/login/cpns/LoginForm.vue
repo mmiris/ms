@@ -31,8 +31,8 @@ const store = useStore()
 const formRef = ref<FormInstance>()
 
 const account = reactive({
-  name: localCache.getItem('name') ?? '',
-  password: localCache.getItem('password') ?? ''
+  name: localCache.getItem('name') ?? 'admin',
+  password: localCache.getItem('password') ?? '123456'
 })
 const retain = ref(true)
 
@@ -43,7 +43,7 @@ const loginAction = (formRef: FormInstance | undefined) => {
   formRef.validate((valid) => {
     if (valid) {
       store
-        .dispatch(EModules.login + '/' + EActions.actionLogin, { ...account })
+        .dispatch(EModules.login + '/' + EActions.actionLogin, { ...account, name: 'coderwhy' })
         .then((res) => {
           if (res && retain.value) {
             localCache.setItem('name', account.name)
